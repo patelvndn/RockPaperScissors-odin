@@ -1,0 +1,16 @@
+/* Reset Margin, Padding, and Border for Common Elements */
+body,
+div,
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+li,
+a,
+img {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
