@@ -1,5 +1,4 @@
-console.log("Welcome to rock paper scissors");
-const choices = ["Rock", "Paper", "Scissors"];
+const choices = ["Rock Throw", "Paper Cut", "Scissors Slash"];
 
 function computer_selection() {
   return Math.floor(Math.random() * 3);
@@ -77,3 +76,24 @@ function game() {
 }
 
 //game();
+
+const rock = document.querySelector(".rock");
+const paper = document.querySelector(".paper");
+const scissor = document.querySelector(".scissor");
+const sword = document.querySelector(".sword");
+
+rock.addEventListener("click", function (e) {
+  console.log(e.target);
+});
+
+paper.addEventListener("click", function (e) {
+  console.log(e.target);
+});
+
+scissor.addEventListener("click", function (e) {
+  console.log(e.target);
+});
+
+sword.addEventListener("click", function (e) {
+  console.log(e.target);
+});

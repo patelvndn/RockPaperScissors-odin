@@ -1,6 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nabla:EDPT,EHLT@96,10&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200&family=Nabla:EDPT,EHLT@96,10&display=swap");
+@import url("https://fonts.cdnfonts.com/css/nintendo-ds-bios");
 
 html {
   background-color: black;
@@ -12,26 +10,182 @@ html {
   height: 100px;
   justify-content: center;
   align-items: center;
-  font-family: "Nabla";
-  font-size: xx-large;
+  margin-top: 20px;
+  font-size: 40px;
+  font-family: "Nintendo DS BIOS", sans-serif;
 }
 
 .wrapper {
+  align-items: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 .game-screen {
-  background-image: url("images/background.webp");
-  margin-top: 100px;
+  background-image: url("../images/background.png");
+  margin-top: 50px;
   width: 700px;
   height: 400px;
   border-radius: 25px;
   border: 10px solid black;
-  box-shadow: 0px 0px 100px 3px white;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  display: flex;
+  flex-flow: row-reverse nowrap;
+  justify-content: space-between;
 }
+.giratina {
+  margin-left: 100px;
+}
+
+.p-health,
+.g-health {
+  width: 100px;
+}
+
+.g-container {
+  flex: 1;
+}
+
+.g-health {
+  margin-top: 60px;
+  margin-left: 150px;
+}
+.p-container {
+  flex: 1;
+  align-self: flex-end;
+}
+
+.p-health {
+  margin-left: 150px;
+}
+
+.patrat {
+  margin-left: 150px;
+  margin-bottom: 30px;
+}
+
+.giratina,
+.patrat {
+  height: 150px;
+  width: auto;
+}
+
 .choices {
+  width: 700px;
+  height: 230px;
+  border-radius: 25px;
+  border: 10px solid white;
+  display: flex;
 }
+
+.selections {
+  border-radius: 15px;
+  border: 1px solid red;
+  flex: 2;
+  background-image: url("../images/choices.png");
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+
+  display: flex;
+  flex-flow: row wrap;
+  gap: 10px;
+}
+
+.selections .scissor {
+  height: 85px;
+  width: 212px;
+  margin-left: 10px;
+  border: 1px solid greenyellow;
+  border-radius: 10px;
+}
+
+.selections .rock {
+  height: 85px;
+  width: 210px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  border: 1px solid greenyellow;
+  border-radius: 10px;
+}
+
+.selections .sword {
+  margin-top: 15px;
+  margin-left: 7px;
+  height: 85px;
+  width: 212px;
+  border-radius: 10px;
+  border: 1px solid greenyellow;
+}
+
+.selections .paper {
+  margin-top: 17px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  height: 85px;
+  width: 212px;
+  border-radius: 10px;
+  border: 1px solid greenyellow;
+}
+
+.description {
+  border-radius: 15px;
+  flex: 1;
+  display: flex;
+}
+
+.description .prompt {
+  flex: 1 0 0;
+  border: 1px solid red;
+  border-radius: 14px;
+  font-family: "Nintendo DS BIOS", sans-serif;
+  font-size: xx-large;
+  padding: 10px;
+  text-wrap: wrap;
+  word-wrap: normal;
+}
+
+.paper:hover,
+.sword:hover,
+.rock:hover,
+.scissor:hover {
+  background-color: green;
+  opacity: 50%;
+  color: white;
+}
+
+/* cursor animation...*/
+
+/* .title h1 {
+  overflow: hidden; 
+  border-right: 0.15em solid white; 
+  white-space: nowrap; 
+  margin: 0 auto; 
+  letter-spacing: 0.05em; 
+  animation: typing 3s steps(40, end), blink-caret 0.5s step-end infinite;
+} */
+
+/* The typing effect */
+/* @keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 600px;
+  }
+} */
+
+/* The typewriter cursor effect */
+/* @keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: white;
+  }
+}  */
