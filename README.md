@@ -1,3 +1,4 @@
 # RockPaperScissors-odin
 Rock Paper Scissors Project
-[Live Demo](URL)
+
+[Live Demo](https://patelvndn.github.io/RockPaperScissors-odin/)
