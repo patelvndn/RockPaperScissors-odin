@@ -3,6 +3,7 @@
 html {
   background-color: black;
   color: white;
+  font-family: "Nintendo DS BIOS", sans-serif;
 }
 
 .title {
@@ -56,6 +57,13 @@ html {
 .p-container {
   flex: 1;
   align-self: flex-end;
+}
+.health-display-p {
+  margin-left: 150px;
+}
+
+.health-display-g {
+  margin-left: 165px;
 }
 
 .p-health {

@@ -8,6 +8,7 @@ const reset = document.querySelector(".reset");
 const healthBarUser = document.querySelector(".p-health");
 const healthBarComp = document.querySelector(".g-health");
 const desc = document.querySelector(".console");
+
 desc.innerText = "Select a move...";
 
 let userChoice = null;
@@ -27,7 +28,6 @@ function get_critical() {
   }
   return 1;
 }
-
 function resetData() {
   usrAtk = 1;
   cmpAtk = 1;
@@ -40,6 +40,32 @@ function resetData() {
   desc.innerText = "Select a move...";
 }
 
+healthBarUser.addEventListener("mouseover", showTooltip);
+healthBarUser.addEventListener("mouseout", hideTooltip);
+
+healthBarComp.addEventListener("mouseover", showTooltipG);
+healthBarComp.addEventListener("mouseout", hideTooltipG);
+
+function showTooltipG() {
+  const tooltip = document.querySelector(".health-display-g");
+  tooltip.innerText = `${compHealth}`;
+  tooltip.style.display = "block";
+}
+
+function hideTooltipG() {
+  const tooltip = document.querySelector(".health-display-g");
+  tooltip.style.display = "none";
+}
+
+function showTooltip() {
+  const tooltip = document.querySelector(".health-display-p");
+  tooltip.innerText = `${userHealth}`;
+  tooltip.style.display = "block";
+}
+function hideTooltip() {
+  const tooltip = document.querySelector(".health-display-p");
+  tooltip.style.display = "none";
+}
 rock.addEventListener("click", () => round(0));
 
 paper.addEventListener("click", () => round(1));
