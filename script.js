@@ -1,99 +1,135 @@
-const choices = ["Rock Throw", "Paper Cut", "Scissors Slash"];
-
-function computer_selection() {
-  return Math.floor(Math.random() * 3);
-}
-
-function player_selection() {
-  let selection = prompt("What is your choice?");
-  selection = selection.toLowerCase();
-
-  if (selection === "rock") {
-    return 0;
-  } else if (selection === "paper") {
-    return 1;
-  } else if (selection === "scissors") {
-    return 2;
-  }
-  console.log(
-    "You enetered something that isn't one of the choices, defaulting to rock"
-  );
-  return 0;
-}
-
-function get_winner(c, p) {
-  // we  know cptr and plyr is different
-  if (c == 0 && p == 2) {
-    return "Computer";
-  } else if (c == 0 && p == 1) {
-    return "Player";
-  } else if (c == 1 && p == 2) {
-    return "Player";
-  } else if (c == 1 && p == 0) {
-    return "Computer";
-  } else if (c == 2 && p == 1) {
-    return "Computer";
-  } else {
-    return "Player";
-  }
-}
-
-function round() {
-  const cptr = computer_selection();
-  cptr_choice = cptr === 0 ? "Rock" : cptr === 1 ? "Paper" : "Scissors";
-  const plyr = player_selection();
-  plyr_choice = plyr === 0 ? "Rock" : plyr === 1 ? "Paper" : "Scissors";
-
-  if (cptr == plyr) {
-    console.log(`It's a Tie, you both chose ${plyr_choice}`);
-    return 0;
-  } else {
-    winner = get_winner(cptr, plyr);
-    if (winner == "Computer") {
-      console.log(`${winner} won! ${choices[cptr]} beats ${choices[plyr]}`);
-      return 1;
-    } else {
-      console.log(`${winner} won! ${choices[plyr]} beats ${choices[cptr]}`);
-      return 2;
-    }
-  }
-}
-
-function game() {
-  let player_points = 0;
-  let computer_points = 0;
-  while (player_points < 5 && computer_points < 5) {
-    let result = round();
-    if (result == 1) {
-      computer_points++;
-    } else if (result == 2) {
-      player_points++;
-    }
-    console.log(
-      `Score:\nPlayer: ${player_points}\nComputer: ${computer_points}`
-    );
-  }
-}
-
-//game();
+const choices = ["Rock Throw", "Paper Cut", "Scissors Slash", "Swords Dance"];
 
 const rock = document.querySelector(".rock");
 const paper = document.querySelector(".paper");
 const scissor = document.querySelector(".scissor");
 const sword = document.querySelector(".sword");
+const reset = document.querySelector(".reset");
+const healthBarUser = document.querySelector(".p-health");
+const healthBarComp = document.querySelector(".g-health");
+const desc = document.querySelector(".console");
+desc.innerText = "Select a move...";
 
-rock.addEventListener("click", function (e) {
-  console.log(e.target);
-});
+let userChoice = null;
+let compChoice = null;
+let usrAtk = 1;
+let cmpAtk = 1;
+let critical = false;
+let userHealth = 9;
+let compHealth = 9;
 
-paper.addEventListener("click", function (e) {
-  console.log(e.target);
-});
+function computer_selection() {
+  return Math.floor(Math.random() * 4);
+}
+function get_critical() {
+  if (0 == Math.floor(Math.random() * 5)) {
+    return 2;
+  }
+  return 1;
+}
 
-scissor.addEventListener("click", function (e) {
-  console.log(e.target);
-});
+function resetData() {
+  usrAtk = 1;
+  cmpAtk = 1;
+  critical = false;
+  userHealth = 9;
+  compHealth = 9;
+  reset.style.display = "none";
+  healthBarComp.setAttribute("src", `images/health/health (0).png`);
+  healthBarUser.setAttribute("src", `images/health/health (0).png`);
+  desc.innerText = "Select a move...";
+}
 
-sword.addEventListener("click", function (e) {
-  console.log(e.target);
-});
+rock.addEventListener("click", () => round(0));
+
+paper.addEventListener("click", () => round(1));
+
+scissor.addEventListener("click", () => round(2));
+
+sword.addEventListener("click", () => round(3));
+
+reset.addEventListener("click", () => resetData());
+
+// we know
+function get_winner(a, b) {
+  if (a === 3) {
+    cmpAtk++;
+    return "Patrat";
+  } else if (b === 3) {
+    usrAtk++;
+    return "Giratina";
+  } else {
+    // Simulate the winner based on the rules of rock-paper-scissors
+    // 0 stands for rock, 1 stands for paper, and 2 stands for scissors
+    if ((a === 0 && b === 2) || (a === 1 && b === 0) || (a === 2 && b === 1)) {
+      return "Giratina"; // Player A wins
+    } else {
+      return "Patrat"; // Player B wins
+    }
+  }
+}
+
+function round(plyr) {
+  let prompt = "";
+  compChoice = computer_selection();
+  userChoice = plyr;
+  let dmg = 1;
+  desc.innerText = `G: ${choices[compChoice]} vs  P: ${choices[userChoice]}`;
+  if (userChoice == 3 && compChoice == 3) {
+    // Both players use swords dance
+    usrAtk++;
+    cmpAtk++;
+    desc.innerText = `Giratina and Patrat both chose ${choices[3]}! Their attack increased!`;
+    return 0;
+  } else if (userChoice == compChoice) {
+    desc.innerText = `Giratina and Patrat both chose ${choices[userChoice]}! The attacks cancel out...`;
+    return 1;
+  }
+
+  winner = get_winner(compChoice, userChoice);
+  if (winner == "Giratina") {
+    let crit = get_critical();
+    dmg = cmpAtk * crit;
+
+    if (crit == 2) {
+      prompt += "Giratina landed a Critical hit! ";
+    }
+    prompt += `Giratina used ${choices[compChoice]} which counters Patrat's ${choices[userChoice]}! Dealt ${dmg} damage...`;
+
+    userHealth -= dmg;
+    if (userHealth < 0) {
+      healthBarUser.setAttribute("src", `images/health/health (${9}).png`);
+    } else {
+      healthBarUser.setAttribute(
+        "src",
+        `images/health/health (${9 - userHealth}).png`
+      );
+    }
+  } else {
+    let crit = get_critical();
+    dmg = usrAtk * crit;
+    if (crit == 2) {
+      prompt += "Patrat landed a Critical hit! ";
+    }
+    prompt += `Patrat used ${choices[userChoice]} which counters Giratina's ${choices[compChoice]}! Dealt ${dmg} damage...`;
+
+    compHealth -= dmg;
+    if (compHealth < 0) {
+      healthBarComp.setAttribute("src", `images/health/health (${9}).png`);
+    } else {
+      healthBarComp.setAttribute(
+        "src",
+        `images/health/health (${9 - compHealth}).png`
+      );
+    }
+  }
+  desc.innerText = prompt;
+  if (userHealth <= 0 || compHealth <= 0) {
+    if (userHealth <= 0) {
+      desc.innerText = "Giratina wins..., Play again?";
+    } else if (compHealth <= 0) {
+      desc.innerText = "Patrat wins!! Play again?";
+    }
+    reset.style.display = "block";
+  }
+}

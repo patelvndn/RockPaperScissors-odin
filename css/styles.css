@@ -83,7 +83,6 @@ html {
 
 .selections {
   border-radius: 15px;
-  border: 1px solid red;
   flex: 2;
   background-image: url("../images/choices.png");
   background-size: cover;
@@ -98,28 +97,25 @@ html {
 
 .selections .scissor {
   height: 85px;
-  width: 212px;
-  margin-left: 10px;
-  border: 1px solid greenyellow;
+  width: 215px;
+  margin-left: 8px;
   border-radius: 10px;
 }
 
 .selections .rock {
   height: 85px;
-  width: 210px;
+  width: 215px;
   margin-bottom: 5px;
   margin-left: 10px;
-  border: 1px solid greenyellow;
   border-radius: 10px;
 }
 
 .selections .sword {
-  margin-top: 15px;
+  margin-top: 17px;
   margin-left: 7px;
   height: 85px;
   width: 212px;
   border-radius: 10px;
-  border: 1px solid greenyellow;
 }
 
 .selections .paper {
@@ -129,7 +125,6 @@ html {
   height: 85px;
   width: 212px;
   border-radius: 10px;
-  border: 1px solid greenyellow;
 }
 
 .description {
@@ -140,7 +135,6 @@ html {
 
 .description .prompt {
   flex: 1 0 0;
-  border: 1px solid red;
   border-radius: 14px;
   font-family: "Nintendo DS BIOS", sans-serif;
   font-size: xx-large;
@@ -158,6 +152,10 @@ html {
   color: white;
 }
 
+.reset {
+  display: none;
+  width: 100px;
+}
 /* cursor animation...*/
 
 /* .title h1 {
