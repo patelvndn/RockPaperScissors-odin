@@ -23,7 +23,7 @@ function computer_selection() {
   return Math.floor(Math.random() * 4);
 }
 function get_critical() {
-  if (0 == Math.floor(Math.random() * 5)) {
+  if (0 == Math.floor(Math.random() * 7)) {
     return 2;
   }
   return 1;
@@ -96,20 +96,28 @@ function get_winner(a, b) {
 }
 
 function round(plyr) {
+  if (userHealth <= 0 || compHealth <= 0) {
+    if (userHealth <= 0) {
+      desc.innerText = "Giratina wins..., Play again?";
+    } else if (compHealth <= 0) {
+      desc.innerText = "Patrat wins!! Play again?";
+    }
+    reset.style.display = "block";
+    return;
+  }
   let prompt = "";
   compChoice = computer_selection();
   userChoice = plyr;
   let dmg = 1;
-  desc.innerText = `G: ${choices[compChoice]} vs  P: ${choices[userChoice]}`;
   if (userChoice == 3 && compChoice == 3) {
     // Both players use swords dance
     usrAtk++;
     cmpAtk++;
     desc.innerText = `Giratina and Patrat both chose ${choices[3]}! Their attack increased!`;
-    return 0;
+    return;
   } else if (userChoice == compChoice) {
     desc.innerText = `Giratina and Patrat both chose ${choices[userChoice]}! The attacks cancel out...`;
-    return 1;
+    return;
   }
 
   winner = get_winner(compChoice, userChoice);
